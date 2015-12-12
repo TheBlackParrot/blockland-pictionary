@@ -1,0 +1,20 @@
+apple
+orange
+grape
+tree
+car
+truck
+picnic
+king
+crown
+mouth
+bird
+baby
+mouse	rat
+ant
+fan
+lightning	thunder
+paw
+police	cop
+window
+house	home

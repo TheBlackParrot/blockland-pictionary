@@ -1,0 +1,7 @@
+The server runs on a queue system for drawing, use <color:00ffff>/queue <color:ffffff>to wait in line.
+Single letter commands also work while drawing, such as <color:00ffff>/r, /s, /c.
+You have <color:00ffff>::ROUNDTIME:: seconds <color:ffffff>to draw, make good use of your time!
+You have <color:00ffff>::AFKTIME:: seconds <color:ffffff>to start drawing before you are considered AFK and skipped.
+There are currently <color:00ffff>::WORDCOUNT:: <color:ffffff>words in the database.
+Use <color:00ffff>/help <color:ffffff>for a list of commands available to you.
+::IFSAVE:: Your drawings will be saved if at least 15% of the server <color:00ffff>/like<color:ffffff>'s it.
