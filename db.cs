@@ -22,7 +22,7 @@ function gatherWordList() {
 	%file.close();
 	%file.delete();
 
-	talk("Gathered" SPC %count SPC "words");
+	messageAll('', "\c5Word database was refreshed, there are now\c3" SPC %count SPC "words.");
 }
 if(!$Pictionary::GatheredWords) {
 	$Pictionary::GatheredWords = 1;

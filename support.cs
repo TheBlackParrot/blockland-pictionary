@@ -1,9 +1,9 @@
-function MinigameSO::messageAll(%this, %taggedString, %msg) {
-	for(%i=0;%i<%this.numMembers;%i++) {
-		%client = %this.member[%i];
-		messageClient(%client, %taggedString, %msg);
-	}
-}
+//function MinigameSO::messageAll(%this, %taggedString, %msg) {
+//	for(%i=0;%i<%this.numMembers;%i++) {
+//		%client = %this.member[%i];
+//		messageClient(%client, %taggedString, %msg);
+//	}
+//}
 
 function RGBToHex(%rgb) {
 	%rgb = getWords(%rgb,0,2);

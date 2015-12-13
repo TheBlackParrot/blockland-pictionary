@@ -19,9 +19,11 @@ exec("./tips.cs");
 exec("./saving.cs");
 exec("./xpm.cs");
 
-$Pictionary::Version = "1.0.0-1";
+$Pictionary::Version = "1.0.1-1";
 
 if(isFile("config/server/Pictionary/prefs.cs")) {
+	$Pref::Pictionary::MusicBlacklist = "";
+
 	exec("config/server/Pictionary/prefs.cs");
 
 	$Pref::Pictionary::SaveImage = mFloor(mClamp($Pref::Pictionary::SaveImage, 0, 1));
@@ -35,6 +37,7 @@ if(isFile("config/server/Pictionary/prefs.cs")) {
 	$Pref::Pictionary::AFKSkipTime = 30;
 	$Pref::Pictionary::AllowSprayCan = 0;
 	$Pref::Pictionary::EnableAdminChat = 1;
+	$Pref::Pictionary::MusicBlacklist = "After_School_Special.ogg Ambient_Deep.ogg Bass_1.ogg Bass_2.ogg Bass_3.ogg Creepy.ogg Distort.ogg Drums.ogg Factory.ogg Icy.ogg Jungle.ogg Paprika_-_Byakko_no.ogg Peaceful.ogg Piano_Bass.ogg Rock.ogg Stress_.ogg Vartan_-_Death.ogg";
 
 	export("$Pref::Pictionary*", "config/server/Pictionary/prefs.cs");
 }
@@ -150,6 +153,7 @@ package PictionarySupportPackage {
 	}
 
 	function onServerDestroyed() {
+		export("$Pref::Pictionary*", "config/server/Pictionary/prefs.cs");
 		deleteVariables("$Pictionary*");
 		return parent::onServerDestroyed();
 	}

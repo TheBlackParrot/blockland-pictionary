@@ -1,6 +1,12 @@
 function gatherTipLines() {
 	%file = new FileObject();
-	%file.openForRead("Add-Ons/Gamemode_Pictionary/tips.txt");
+
+	%filename = "config/server/Pictionary/tips.txt";
+	if(!isFile(%filename)) {
+		%filename = "Add-Ons/Gamemode_Pictionary/tips.txt";
+	}
+
+	%file.openForRead(%filename);
 
 	%count = 0;
 	while(!%file.isEOF()) {
@@ -8,8 +14,6 @@ function gatherTipLines() {
 		%count++;
 	}
 	$Pictionary::TipCount = %count;
-
-	talk("Gathered" SPC %count SPC "tips");
 }
 if(!$Pictionary::InitTips) {
 	$Pictionary::InitTips = 1;

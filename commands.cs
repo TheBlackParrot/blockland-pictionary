@@ -314,6 +314,31 @@ function serverCmdPVP(%client) {
 	}
 }
 
+function serverCmdRefreshWordList(%client) {
+	if(!%client.isSuperAdmin) {
+		return;
+	}
+
+	if(%client.pictionaryFloodProtect(1)) {
+		return;
+	}
+
+	gatherWordList();
+}
+
+function serverCmdRefreshTips(%client) {
+	if(!%client.isSuperAdmin) {
+		return;
+	}
+
+	if(%client.pictionaryFloodProtect(1)) {
+		return;
+	}
+
+	gatherTipLines();
+	messageClient(%client, '', "\c5Tips refreshed, there are now\c3" SPC $Pictionary::TipCount SPC "tips.");
+}
+
 function serverCmdHelp(%client, %page) {
 	if(%client.pictionaryFloodProtect()) {
 		return;
@@ -350,6 +375,8 @@ function serverCmdHelp(%client, %page) {
 
 	if(%client.isSuperAdmin) {
 		messageClient(%client, '', "\c0" @ "/override \c5[player] \c7-- \c6Sets the drawer for the next round.");
+		messageClient(%client, '', "\c0" @ "/refreshWordList \c7-- \c6Refreshes the word list.");
+		messageClient(%client, '', "\c0" @ "/refreshTipList \c7-- \c6Refreshes the tip list.");
 	}
 }
 
