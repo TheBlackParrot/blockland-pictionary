@@ -25,7 +25,7 @@ function generateBoard() {
 				angleID = 1;
 				client = 0;
 				colorFxID = 3;
-				colorID = 63;
+				colorID = 54;
 				dataBlock = "brick1x1PrintData";
 				isBasePlate = 0;
 				isPlanted = 1;

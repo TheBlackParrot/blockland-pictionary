@@ -48,9 +48,21 @@ package PictionaryGuessingPackage {
 			return parent::serverCmdMessageSent(%client, %msg);
 		}
 
-		if(%client.guessed && !%client.isAdmin) {
-			%format = '\c7%1\c3%2\c7%3\c6: %4';
+		%format = '\c7%1\c3%2\c7%3\c6: %4';
 
+		%firstWord = getWord(%msg, 0);
+		if(%client.isAdmin && stripos(%firstWord, "@d") != -1) {
+			for(%i=0;%i<ClientGroup.getCount();%i++) {
+				%tmp = ClientGroup.getObject(%i);
+				if(%tmp.canDraw) {
+					commandToClient(%tmp, 'chatMessage', %tmp, '', '', %format, "\c7[\c2ADMIN->\c4DRAWER\c7]" SPC %client.clanPrefix, %client.name, %client.clanSuffix, "<color:cccccc>" @ stripMLControlChars(%msg));
+				}
+			}
+			commandToClient(%client, 'chatMessage', %tmp, '', '', %format, "\c7[\c2ADMIN->\c4DRAWER\c7]" SPC %client.clanPrefix, %client.name, %client.clanSuffix, "<color:cccccc>" @ stripMLControlChars(%msg));
+			return;
+		}
+
+		if(%client.guessed && !%client.isAdmin) {
 			if(%client.lastMsg $= %msg) {
 				return;
 			}
@@ -64,7 +76,7 @@ package PictionaryGuessingPackage {
 			for(%i=0;%i<ClientGroup.getCount();%i++) {
 				%tmp = ClientGroup.getObject(%i);
 				if(%tmp.guessed || %tmp.canDraw || %tmp.isAdmin) {
-					commandToClient(%tmp, 'chatMessage', %tmp, '', '', %format, "\c0[GUESSED]\c7" SPC %client.clanPrefix, %client.name, %client.clanSuffix, "<color:cccccc>" @ %msg);
+					commandToClient(%tmp, 'chatMessage', %tmp, '', '', %format, "\c7[\c0GUESSED\c7]" SPC %client.clanPrefix, %client.name, %client.clanSuffix, "<color:cccccc>" @ stripMLControlChars(%msg));
 				}
 			}
 			return;
@@ -91,7 +103,7 @@ package PictionaryGuessingPackage {
 				%tmp = ClientGroup.getObject(%i);
 				if(%tmp.isAdmin || %tmp.guessed || %tmp == %client) {
 					// for now
-					commandToClient(%tmp, 'chatMessage', %tmp, '', '', %format, "\c4[DRAWER]" SPC %client.clanPrefix, %client.name, %client.clanSuffix, %msg);
+					commandToClient(%tmp, 'chatMessage', %tmp, '', '', %format, "\c7[\c4DRAWER\c7]" SPC %client.clanPrefix, %client.name, %client.clanSuffix, stripMLControlChars(%msg));
 				}
 			}
 			return;

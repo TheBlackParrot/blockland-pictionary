@@ -3,6 +3,10 @@ function GameConnection::showDrawingInfo(%this, %time) {
 }
 
 function Player::drawingInfoLoop(%this) {
+	if(!%this.client.canDraw) {
+		return;
+	}
+	
 	// this is intentionally not parented to GameConnection
 	cancel(%this.infoSched);
 	%this.infoSched = %this.schedule(1000, drawingInfoLoop);

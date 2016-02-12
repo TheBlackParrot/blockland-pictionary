@@ -19,7 +19,8 @@ exec("./tips.cs");
 exec("./saving.cs");
 exec("./xpm.cs");
 
-$Pictionary::Version = "1.0.1-1";
+$Pictionary::Version = "1.0.3-6";
+talk("Executed Pictionary v" @ $Pictionary::Version);
 
 if(isFile("config/server/Pictionary/prefs.cs")) {
 	$Pref::Pictionary::MusicBlacklist = "";

@@ -5,3 +5,5 @@ You have <color:00ffff>::AFKTIME:: seconds <color:ffffff>to start drawing before
 There are currently <color:00ffff>::WORDCOUNT:: <color:ffffff>words in the database.
 Use <color:00ffff>/help <color:ffffff>for a list of commands available to you.
 ::IFSAVE:: Your drawings will be saved if at least 15% of the server <color:00ffff>/like<color:ffffff>'s it.
+You can avoid having to requeue each time you draw by toggling <color:00ffff>/autoqueue.
+To request a new word while drawing, use <color:00ffff>/newWord.

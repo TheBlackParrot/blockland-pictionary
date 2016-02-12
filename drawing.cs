@@ -41,20 +41,20 @@ function serverCmdClear(%client, %color) {
 	
 	if(%color !$= "") {
 		switch$(%color) {
-			case "red": %color = 56;
-			case "orange": %color = 57;
-			case "yellow": %color = 58;
-			case "green": %color = 59;
-			case "cyan" or "turquoise" or "aqua": %color = 60;
-			case "blue" or "indigo": %color = 61;
-			case "pink" or "fuschia": %color = 62;
-			case "white": %color = 63;
-			case "black": %color = 53;
-			case "grey" or "gray" or "silver": %color = 54;
-			case "brown": %color = 50;
+			case "red": %color = 1;
+			case "orange": %color = 10;
+			case "yellow": %color = 14;
+			case "green": %color = 22;
+			case "cyan" or "turquoise" or "aqua": %color = 30;
+			case "blue" or "indigo": %color = 32;
+			case "pink" or "fuschia": %color = 46;
+			case "white": %color = 55;
+			case "black": %color = 48;
+			case "grey" or "gray" or "silver": %color = 51;
+			case "brown": %color = 57;
 		}
 	} else {
-		%color = 63;
+		%color = 54;
 	}
 	%color = mClamp(%color, 0, 63);
 

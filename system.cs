@@ -57,7 +57,7 @@ function MinigameSO::selectDrawer(%this) {
 	%player.client.schedule(200, play2D, errorSound);
 	%player.client.schedule(400, play2D, errorSound);
 	messageClient(%chosen, '', "\c2Admins are able to see your chat messages. \c4Use /help for further help.");
-	%player.client.afkSched = %player.client.schedule(30000, endForAFK);
+	%player.client.afkSched = %player.client.schedule($Pref::Pictionary::AFKSkipTime*1000, endForAFK);
 
 	for(%i=0;%i<%this.numMembers;%i++) {
 		%client = %this.member[%i];
@@ -104,7 +104,7 @@ function MinigameSO::updateWord(%this) {
 function clearBoard() {
 	for(%i=0;%i<$Pictionary::BoardCount;%i++) {
 		if(isObject($Pictionary::BoardBrick[%i])) {
-			$Pictionary::BoardBrick[%i].setColor(63);
+			$Pictionary::BoardBrick[%i].setColor(54);
 		}
 	}
 }

@@ -339,6 +339,26 @@ function serverCmdRefreshTips(%client) {
 	messageClient(%client, '', "\c5Tips refreshed, there are now\c3" SPC $Pictionary::TipCount SPC "tips.");
 }
 
+function serverCmdNewWord(%client) {
+	if(!%client.canDraw) {
+		return;
+	}
+
+	if($Sim::Time - %client.lastWordRequest < 4) {
+		return;
+	}
+	%client.lastWordRequest = $Sim::Time;
+
+	if($Sim::Time - $DefaultMinigame.startedAt > $Pref::Pictionary::RoundTime/5) {
+		messageClient(%client, '', "\c0You cannot change words this late into the round.");
+		%client.play2D(errorSound);
+		return;
+	}
+
+	$DefaultMinigame.messageAll('MsgAdminForce', "\c5The drawer,\c3" SPC %client.name SPC "\c5has requested a new word.");
+	$DefaultMinigame.updateWord();
+}
+
 function serverCmdHelp(%client, %page) {
 	if(%client.pictionaryFloodProtect()) {
 		return;
@@ -363,6 +383,7 @@ function serverCmdHelp(%client, %page) {
 		messageClient(%client, '', "\c2" @ "/clear \c5[blank or [color]] \c7-- \c6Clear the board or clear it with a color.");
 		messageClient(%client, '', "\c2" @ "/fill \c7-- \c6Resets the board to the color you currently have selected.");
 		messageClient(%client, '', "\c2" @ "/pass \c7-- \c6Skip your round, if you don't wish to draw.");
+		messageClient(%client, '', "\c2" @ "/newWord \c7-- \c6Lets you pick a new word before 1/5th of the round has finished.");
 		messageClient(%client, '', "\c5" @ "SINGLE LETTER SHORTCUTS ALSO WORK, e.g. \c6/s c will set your brush shape to a circle.");
 	}
 
@@ -371,6 +392,7 @@ function serverCmdHelp(%client, %page) {
 		messageClient(%client, '', "\c1" @ "/drawUnban \c5[player] \c7-- \c6Lets a previously banned player draw again.");
 		messageClient(%client, '', "\c1" @ "/seeWord \c7-- \c6See the current word, be aware this nulls your ability to guess for the round.");
 		messageClient(%client, '', "\c1" @ "/skip \c7-- \c6Force skips the round.");
+		messageClient(%client, '', "\c1" @ "@d[rawer] \c7-- \c6Lets you speak directly to the drawer.");
 	}
 
 	if(%client.isSuperAdmin) {
